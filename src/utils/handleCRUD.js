@@ -7,7 +7,7 @@ const createOne = (Model) => async (req,res,next) => {
         if (!doc) {
             return res.status (404).json ({message:"failed to register"});
         }
-        return res.status (200).json ({message:"succcessful",data:doc});
+        return res.status (201).json ({message:"succcessful",data:doc});
     }catch (error) {
         console.log (error)
     }
@@ -45,7 +45,7 @@ const getOneById = (Model) => async (req,res,next) => {
 const updateOneById = (Model) => async (req,res,next) => {
     {
     try {
-        const doc = await Model.findByIdAndUpdtate(req.params.id, req.body);
+        const doc = await Model.findByIdAndUpdate(req.params.id, req.body);
         if (!doc) {
             return res.status (404).json ({message:"failed to register"});
         }
