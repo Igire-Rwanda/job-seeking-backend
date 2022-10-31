@@ -1,4 +1,4 @@
-import categoryModel from "../models/categoryPostModel";
+import categoryModel from "../models/categoryModel";
 import handleCRUD from "../utils/handleCRUD";
 
  const createCategory = handleCRUD.createOne(categoryModel);

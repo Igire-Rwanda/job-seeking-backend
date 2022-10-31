@@ -1,4 +1,4 @@
-import applicationModel from "../models/applicationPostModel";
+import applicationModel from "../models/applicationModel";
 import handleCRUD from "../utils/handleCRUD";
 
  const createApplication = handleCRUD.createOne(applicationModel);
