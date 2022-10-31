@@ -58,15 +58,15 @@ const profileSchema = new mongoose.Schema({
   timestamps: true
 });
 
-userSchema.pre (/^find/, function (next){
+profileSchema.pre (/^find/, function (next){
   this.populate({
-    path:"userId",
+    path:"profileId",
     select: "companyName title phone email companyWeb",
 
 });
   next ();
 });
 
-export default mongoose.model('Profile', userSchema);
+export default mongoose.model('Profile', profileSchema);
 
 
