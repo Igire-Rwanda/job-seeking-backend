@@ -10,8 +10,8 @@ import jobController from '../controllers/jobControllers';
 
 const router = Router();
 router.post('/', jobController.createJob);
-router.get('/', jobController.getOneJob);
-router.get('/getAll', jobController.getAllJobs);
+router.get('/:id', jobController.getOneJob);
+router.get('/', jobController.getAllJobs);
 router.patch('/:id', jobController.updateJob);
 router.delete('/:id', jobController.deleteJob);
 
