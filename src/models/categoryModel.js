@@ -11,14 +11,12 @@ const categorySchema = new mongoose.Schema({
   type: {
     type: String,
     enum: [
-      "Software Developer",
-      "Software Engineer",
-      "Technical Writer",
-      "UI Designer",
-      "UX Designer",
-      "Virtual Assistant",
-      "Web Designer",
-      "Wordpress Developer",
+      "BI And Internal Systems",
+      "Engineering",
+      "Architecture and Marketing ",
+      "Customer Operations",
+      "Finance and Legal ",
+      "Wordpress Developer"
     ],
   },
 });

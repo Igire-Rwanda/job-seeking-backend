@@ -1,4 +1,4 @@
-import skillsModel from "../models/skillsPostModel";
+import skillsModel from "../models/skillsModel";
 import handleCRUD from "../utils/handleCRUD";
 
  const createSkills = handleCRUD.createOne(skillsModel);
