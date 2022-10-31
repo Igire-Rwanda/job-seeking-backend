@@ -2,6 +2,11 @@ import mongoose from 'mongoose';
 
 const profileSchema = new mongoose.Schema({
 
+  
+  profile: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Profile"
+ },
   cvLink: {
     type: String,
     unique: true
@@ -52,6 +57,16 @@ const profileSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
+
+userSchema.pre (/^find/, function (next){
+  this.populate({
+    path:"userId",
+    select: "companyName title phone email companyWeb",
+
+});
+  next ();
+});
+
 export default mongoose.model('Profile', userSchema);
 
 

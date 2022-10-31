@@ -1,11 +1,18 @@
 import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
-
-  title: {
+  job: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job"
+ },
+  jobCategory: {
     type: String,
   },
-  companyName: {
+  companyDescription: {
+    type: String,
+    unique: true
+  },
+  jobDescription: {
     type: String,
     unique: true
   },
@@ -13,15 +20,15 @@ const jobSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  deadline: {
-    type: Date,
+  jobRequirements: {
+    type: String,
     
   },
- description: {
+ howToApply: {
     type: String,
    
   },
-  employmentMode: {
+  vacancyType: {
      type: String,
     enum:["remote","0ffice","partTime","fullTime",]
    }}
