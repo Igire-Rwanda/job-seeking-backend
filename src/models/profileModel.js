@@ -7,6 +7,11 @@ const profileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Profile"
  },
+ user: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'User',
+  required: true,
+},
   cvLink: {
     type: String,
     unique: true
@@ -33,11 +38,7 @@ const profileSchema = new mongoose.Schema({
     type: String,
     enum :["Remote","Office","Part-Time","Full-Time"]
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
+
   CompanyName: {
     type: String,
     
@@ -58,14 +59,7 @@ const profileSchema = new mongoose.Schema({
   timestamps: true
 });
 
-profileSchema.pre (/^find/, function (next){
-  this.populate({
-    path:"profileId",
-    select: "companyName title phone email companyWeb",
 
-});
-  next ();
-});
 
 export default mongoose.model('Profile', profileSchema);
 

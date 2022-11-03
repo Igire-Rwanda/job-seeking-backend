@@ -4,8 +4,8 @@ import { isUser } from '../middlewares/authorization';
 
 const router = Router();
 
-router.get('/:id',isUser, UserController.login);
-router.post('/',isUser, UserController.signup);
+router.get('/:id', UserController.login);
+router.post('/', UserController.signup);
 
 //admin
 router.get('/',isUser, UserController.getAllUsers);

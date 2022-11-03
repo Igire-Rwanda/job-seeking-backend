@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const applicationSchema = new mongoose.Schema({
   application: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Application",
+    ref: "ApplicationId",
   },
   title: {
     type: String,
