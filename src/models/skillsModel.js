@@ -37,7 +37,11 @@ const skillsSchema = new mongoose.Schema({
       "Java Developer",
       "Social Media Manager",
     ],
-  },
-});
+  }, 
+  
+}, {
+  timestamps :true
+}
+);
 
 export default mongoose.model("Skills", skillsSchema);

@@ -1,21 +1,20 @@
 import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
-  job: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Job"
- },
- user: {
+
+profile: {
   type: mongoose.Schema.Types.ObjectId,
-  ref: "User"
+  ref: "Profile"
 },
 skills: {
   type: mongoose.Schema.Types.ObjectId,
   ref: "Skills",
 },
-  jobCategory: {
-    type: String,
-  },
+
+category: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Category",
+},
   companyDescription: {
     type: String,
     unique: true
@@ -43,16 +42,23 @@ skills: {
   );
   jobSchema.pre (/^find/, function (next){
     this.populate({
-      path:"User",
+      path:"Profile",
       select: "companyName title phone email companyWeb",
   
   });
   this.populate({
     path:"Skills",
-    select: "title type",
+
+  });
+  this.populate({
+    path:"Category",
+    
   
   });
   
     next ();
+  },
+  {
+    timestamps :true
   });
 export default mongoose.model('Job', jobSchema);

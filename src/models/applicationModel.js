@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 
 const applicationSchema = new mongoose.Schema({
-  application: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "ApplicationId",
+    ref: "User",
+  },
+  job: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Job",
   },
   title: {
     type: String,
@@ -16,9 +20,24 @@ const applicationSchema = new mongoose.Schema({
       "Architecture and Marketing ",
       "Customer Operations",
       "Finance and Legal ",
-      "Wordpress Developer"
+      "Wordpress Developer",
     ],
   },
 });
+applicationSchema.pre (/^find/, function (next){
+    this.populate({
+      path:"User",
+      select: "companyName title phone email companyWeb",
+  
+  });
+  this.populate({
+    path:"Job",
 
+  });
+  
+    next ();
+  },
+  {
+    timestamps :true
+  });
 export default mongoose.model("Application", applicationSchema);

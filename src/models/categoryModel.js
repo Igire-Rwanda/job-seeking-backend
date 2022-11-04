@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
-  },
+  
   title: {
     type: String,
   },
@@ -19,6 +16,9 @@ const categorySchema = new mongoose.Schema({
       "Wordpress Developer"
     ],
   },
+}
+, {
+  timestamps :true
 });
 
 export default mongoose.model("Category", categorySchema);

@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import UserController from '../controllers/userControllers';
 import { isUser } from '../middlewares/authorization';
-
+import {checkUser, loginUser} from "../middlewares/checkUserExist"
 const router = Router();
 
 router.get('/:id', UserController.login);
-router.post('/', UserController.signup);
+router.post('/', checkUser,loginUser, UserController.signup);
 
 //admin
 router.get('/',isUser, UserController.getAllUsers);
