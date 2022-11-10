@@ -9,7 +9,10 @@ const applicationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Job",
   },
-  title: {
+  name: {
+    type: String,
+  },
+  jobApplicationTitle:{
     type: String,
   },
   type: {
@@ -23,6 +26,27 @@ const applicationSchema = new mongoose.Schema({
       "Wordpress Developer",
     ],
   },
+  address: { type: String, default: "Rwanda" },
+  phone: String,
+  category: String,
+  email: {
+    type: String,
+  },
+  gender: {
+    type: String,
+    enum: ["male", "female"],
+  },
+  status: {
+    type: String,
+    enum: ["pending", "declined","accepted"],
+    required: [true, "status is required"],
+    default: "pending",
+  },
+  appliedOn: {
+    type: String,
+    default: Date.now(),
+  },
+ 
 });
 applicationSchema.pre (/^find/, function (next){
     this.populate({
