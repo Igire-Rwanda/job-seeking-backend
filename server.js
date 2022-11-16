@@ -22,7 +22,7 @@ mongoose
 
   // server configuration
   const server = process.env.PORT 
-app.listen(4040,() =>{
-    console.log ("server is running on port 4040");
+app.listen(4041,() =>{
+    console.log ("server is running on port 4041");
 })
 export default app

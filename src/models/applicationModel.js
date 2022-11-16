@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const categorySchema = new mongoose.Schema({
-  category: {
+const applicationSchema = new mongoose.Schema({
+  application: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
+    ref: "Application",
   },
   title: {
     type: String,
@@ -21,4 +21,4 @@ const categorySchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Category", categorySchema);
+export default mongoose.model("Application", applicationSchema);
