@@ -1,15 +1,25 @@
 import { Router } from 'express';
-import UserController from '../controllers/userControllers';
-import { isUser } from '../middlewares/authorization';
+import userControllers from '../controllers/userControllers';
+import { checkUser, loginUser } from "../middlewares/checkUserExist";
+// import { verifyUserToken } from "../middlewares/verifyToken";
 
-const router = Router();
 
-router.get('/:id',isUser, UserController.login);
-router.post('/',isUser, UserController.signup);
+const route = Router();
 
-//admin
-router.get('/',isUser, UserController.getAllUsers);
-router.patch('/:id',isUser, UserController.updateUser);
-router.delete('/:id',isUser, UserController.deleteUser);
 
-export default router;
+route.get("/login", loginUser);
+route 
+ .route("/")
+ .post(checkUser, userControllers.signup)
+ .get(userControllers.getAllUsers)
+
+ .get(userControllers.login);
+//  route.use(verifyUserToken);
+
+
+route
+ .route("/:id")
+ .patch(userControllers.updateUser)
+ .delete(userControllers.deleteUser);
+
+export default route;
