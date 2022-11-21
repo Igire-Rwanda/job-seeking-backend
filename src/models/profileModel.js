@@ -3,24 +3,24 @@ import mongoose from 'mongoose';
 const profileSchema = new mongoose.Schema({
 
   
-  profile: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Profile"
- },
-  cvLink: {
+  profileImage: {
     type: String,
-    unique: true
-  },
-  salaryExpectactions: {
+ },
+ 
+ address: {
+  type: String,
+},
+country: {
+  type: String,
+},
+  educationLevel: {
     type: String,
     
   },
   yearsOfExperience: {
     type: Number,
   },
-  country: {
-    type: String,
-  },
+  
   skills: {
     type: String,
    
