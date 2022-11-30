@@ -1,18 +1,30 @@
 import { Router } from 'express';
 import jobController from '../controllers/jobControllers';
+import { verifyUserToken } from "../middlewares/verifyToken";
+import verifyAccess from '../middlewares/verifyAccess';
 
 
 
 // router.route('/')
-// .post(jobController.createJob)
-// .get(jobController.getOneJob)
+// .post(jobController.createprofile)
+// .get(jobController.getOneprofile)
 
 
-const router = Router();
-router.post('/', jobController.createJob);
-router.get('/:id', jobController.getOneJob);
-router.get('/', jobController.getAllJobs);
-router.patch('/:id', jobController.updateJob);
-router.delete('/:id', jobController.deleteJob);
+const route = Router();
+route.get("/",jobController.getAllJobs);
+route.use(verifyUserToken);
+route
+.route("/")
+.post(verifyAccess("Client"),jobController.createJob);
 
-export default router;
+
+
+route
+.route("/:id")
+.get(jobController.getOneJob)
+.patch( jobController.updateJob)
+.delete( jobController.deleteJob);
+
+
+
+export default route;

@@ -1,6 +1,7 @@
 
 import { Router } from 'express';
 import profileController from '../controllers/profileControllers';
+import { verifyUserToken } from "../middlewares/verifyToken";
 
 
 
@@ -9,13 +10,20 @@ import profileController from '../controllers/profileControllers';
 // .get(profileController.getOneprofile)
 
 
-const router = Router();
-router.post('/', profileController.createProfile);
-router.get('/:id', profileController.getOneProfile);
-router.patch('/:id', profileController.updateProfile);
-router.delete('/:id', profileController.deleteProfile);
-//admin
-router.get('/', profileController.getAllProfiles);
+const route = Router();
+route.use(verifyUserToken);
+route
+.route("/")
+.post(profileController.createProfile)
+.get(profileController.getAllProfiles)
 
 
-export default router;
+route
+.route("/:id")
+.get(profileController.getOneProfile)
+.patch( profileController.updateProfile)
+.delete( profileController.deleteProfile);
+
+
+
+export default route;

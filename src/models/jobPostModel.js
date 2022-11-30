@@ -1,36 +1,58 @@
 import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
-  job: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Job"
+    ref: "User",
+  },
+  companyLogo: {
+    type: String,
  },
-  jobCategory: {
+ jobDeadLine:{
+type:String,
+ },
+  jobTitle: {
+    type: String,
+ },
+  companyName: {
     type: String,
   },
-  companyDescription: {
+
+  jobDescription:{
     type: String,
-    unique: true
+    
   },
-  jobDescription: {
+  companyWebsite:{
     type: String,
-    unique: true
+  },
+  
+  jobRequirements: {
+    type: String,
+    
   },
   isActive: {
     type: Boolean,
     default: true
   },
-  jobRequirements: {
-    type: String,
-    
-  },
  howToApply: {
     type: String,
    
-  },
-  vacancyType: {
+  }, 
+  emplomentMode: {
      type: String,
-    enum:["remote","0ffice","partTime","fullTime",]
-   }}
-  );
+    enum:["remote","office","partTime","fullTime"],
+    default:"remote"
+   },
+  }, {
+    timestamps: true
+  });
+  
+  jobSchema.pre (/^find/, function (next){
+    this.populate({
+      path:"user",
+      select: "firstname lastname username email phone role",
+  
+  });
+    next ();
+  });
 export default mongoose.model('Job', jobSchema);

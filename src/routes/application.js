@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import applicationController from '../controllers/applicationControllers';
+import { verifyUserToken } from "../middlewares/verifyToken";
+import verifyAccess from '../middlewares/verifyAccess';
 
 
 
@@ -10,7 +12,8 @@ import applicationController from '../controllers/applicationControllers';
 
 
 const router = Router();
-router.post('/', applicationController.createApplication);
+router.use(verifyUserToken);
+router.post('/',verifyAccess("Talent"), applicationController.createApplication);
 router.get('/:id', applicationController.getOneApplication);
 router.get('/', applicationController.getAllApplications);
 router.patch('/:id', applicationController.updateApplication);

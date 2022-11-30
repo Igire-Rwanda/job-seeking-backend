@@ -14,12 +14,19 @@ export const verifyUserToken = async(req, res, next) => {
         if(!token) {
             return Response.errorMessage(res, "No token provided!", status.NOT_FOUND);
         }
-             const {name} = payload;
+        const payload=decodeToken(token);
+        const {name} = payload;
         if (name === "jsonWebTokenError"){
             return Response.errorMessage(
                 res,
-                "Token expired, invalid token", status.UNAUTHORIZED
+                "unauthorized, invalid token", status.UNAUTHORIZED
             );
+        }else if(name === "TokenExpiredError"){
+            return Response.errorMessage(
+                res,
+                "Token Expired, invalid token", status.UNAUTHORIZED
+            );
+
         }
         const user = await userModel.findOne({ _id: payload?.user?._id}).select(
             "-password"

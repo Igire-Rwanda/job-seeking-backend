@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
- },
-  fullname: {
+
+  firstname: {
+    type: String,
+  },
+  lastname: {
     type: String,
   },
   phone: {
@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
   },
   role:{
     type:String,
-    enum :["Admin","Client","Talent"]
+    enum:["Admin","Client","Talent"],
+    default:"Talent"
   },
   
 
