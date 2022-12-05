@@ -13,10 +13,10 @@ import verifyAccess from '../middlewares/verifyAccess';
 
 const router = Router();
 router.use(verifyUserToken);
-router.post('/',verifyAccess("Talent"), applicationController.createApplication);
-router.get('/:id', applicationController.getOneApplication);
-router.get('/', applicationController.getAllApplications);
+router.post('/',verifyAccess("Talent"),applicationController.createApplication);
+router.get('/:id',verifyAccess("Client"),applicationController.getOneApplication);
+router.get('/',verifyAccess("Client"),applicationController.getAllApplications);
 router.patch('/:id', applicationController.updateApplication);
-router.delete('/:id', applicationController.deleteApplication);
+router.delete('/:id',verifyAccess("Client"), applicationController.deleteApplication);
 
 export default router;

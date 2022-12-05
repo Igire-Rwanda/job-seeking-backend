@@ -22,8 +22,8 @@ route
 route
 .route("/:id")
 .get(jobController.getOneJob)
-.patch( jobController.updateJob)
-.delete( jobController.deleteJob);
+.patch(verifyAccess("Client"), jobController.updateJob)
+.delete( verifyAccess("Admin"),jobController.deleteJob);
 
 
 

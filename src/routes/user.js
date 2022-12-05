@@ -2,6 +2,7 @@ import { Router } from 'express';
 import userControllers from '../controllers/userControllers';
 import { checkUser, loginUser } from "../middlewares/checkUserExist";
 import { verifyUserToken } from "../middlewares/verifyToken";
+import verifyAccess from '../middlewares/verifyAccess';
 
 
 const route = Router();
@@ -18,12 +19,12 @@ route.post("/login", loginUser);
  route.use(verifyUserToken);
 route
 .route("/")
-.get(userControllers.getAllUsers);
+.get(verifyAccess("Client"),userControllers.getAllUsers);
 
 route
  .route("/:id")
  .patch(userControllers.updateUser)
- .delete(userControllers.deleteUser)
- .get(userControllers.getOne);
+ .delete(verifyAccess("Admin"),userControllers.deleteUser)
+ .get(verifyAccess("Admin,Client"),userControllers.getOne);
 
 export default route;

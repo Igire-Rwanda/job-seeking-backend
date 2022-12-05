@@ -2,6 +2,7 @@
 import { Router } from 'express';
 import profileController from '../controllers/profileControllers';
 import { verifyUserToken } from "../middlewares/verifyToken";
+import verifyAccess from "../middlewares/verifyAccess"
 
 
 
@@ -20,9 +21,9 @@ route
 
 route
 .route("/:id")
-.get(profileController.getOneProfile)
+.get(verifyAccess("Client, Admin"),profileController.getOneProfile)
 .patch( profileController.updateProfile)
-.delete( profileController.deleteProfile);
+.delete(verifyAccess("Client"), profileController.deleteProfile);
 
 
 

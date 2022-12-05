@@ -8,7 +8,7 @@ const createOne = (Model) => async (req,res,next) => {
             return res.status (404).json ({message:"failed to register"});
         }
        
-        return res.status(200).json({message: 'Applyied successfully', data: doc});
+        return res.status(200).json({message: 'Created successfully', data: doc});
             }catch(error){
               console.log(error)
             }
